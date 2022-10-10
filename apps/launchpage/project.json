@@ -1,0 +1,84 @@
+{
+  "name": "launchpage",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/launchpage/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/launchpage",
+        "index": "apps/launchpage/src/index.html",
+        "baseHref": "/",
+        "main": "apps/launchpage/src/main.tsx",
+        "polyfills": "apps/launchpage/src/polyfills.ts",
+        "tsConfig": "apps/launchpage/tsconfig.app.json",
+        "assets": [
+          "apps/launchpage/src/favicon.ico",
+          "apps/launchpage/src/assets"
+        ],
+        "styles": ["apps/launchpage/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/launchpage/src/environments/environment.ts",
+              "with": "apps/launchpage/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "launchpage:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "launchpage:build:development"
+        },
+        "production": {
+          "buildTarget": "launchpage:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/launchpage/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/launchpage"],
+      "options": {
+        "jestConfig": "apps/launchpage/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
