@@ -1,7 +1,7 @@
 {
-  "name": "launchpage",
+  "name": "front",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/launchpage/src",
+  "sourceRoot": "apps/front/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -10,20 +10,17 @@
       "defaultConfiguration": "production",
       "options": {
         "compiler": "babel",
-        "outputPath": "dist/apps/launchpage",
-        "index": "apps/launchpage/src/index.html",
+        "outputPath": "dist/apps/front",
+        "index": "apps/front/src/index.html",
         "baseHref": "/",
-        "main": "apps/launchpage/src/main.tsx",
-        "polyfills": "apps/launchpage/src/polyfills.ts",
-        "tsConfig": "apps/launchpage/tsconfig.app.json",
-        "assets": [
-          "apps/launchpage/src/favicon.ico",
-          "apps/launchpage/src/assets"
-        ],
-        "styles": ["apps/launchpage/src/styles.scss"],
+        "main": "apps/front/src/main.tsx",
+        "polyfills": "apps/front/src/polyfills.ts",
+        "tsConfig": "apps/front/tsconfig.app.json",
+        "assets": ["apps/front/src/favicon.ico", "apps/front/src/assets"],
+        "styles": ["apps/front/src/styles.scss"],
         "scripts": [],
         "webpackConfig": "@nrwl/react/plugins/webpack",
-        "postcssConfig": "apps/launchpage/postcss.config.js"
+        "postcssConfig": "apps/front/postcss.config.js"
       },
       "configurations": {
         "development": {
@@ -35,8 +32,8 @@
         "production": {
           "fileReplacements": [
             {
-              "replace": "apps/launchpage/src/environments/environment.ts",
-              "with": "apps/launchpage/src/environments/environment.prod.ts"
+              "replace": "apps/front/src/environments/environment.ts",
+              "with": "apps/front/src/environments/environment.prod.ts"
             }
           ],
           "optimization": true,
@@ -52,15 +49,15 @@
       "executor": "@nrwl/webpack:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "launchpage:build",
+        "buildTarget": "front:build",
         "hmr": true
       },
       "configurations": {
         "development": {
-          "buildTarget": "launchpage:build:development"
+          "buildTarget": "front:build:development"
         },
         "production": {
-          "buildTarget": "launchpage:build:production",
+          "buildTarget": "front:build:production",
           "hmr": false
         }
       }
@@ -69,14 +66,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/launchpage/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/front/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/launchpage"],
+      "outputs": ["coverage/apps/front"],
       "options": {
-        "jestConfig": "apps/launchpage/jest.config.ts",
+        "jestConfig": "apps/front/jest.config.ts",
         "passWithNoTests": true
       }
     }
