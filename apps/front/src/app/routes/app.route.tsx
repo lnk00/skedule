@@ -3,9 +3,10 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { auth } from '../services/auth.service';
-import { useAtomValue } from 'jotai';
-import { userAccessTokenAtom } from '../states/user.state';
+import { useAtom } from 'jotai';
+import { userAtom } from '../states/user.state';
 import { useNavigate } from 'react-router-dom';
+import { RESET } from 'jotai/utils';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
@@ -13,13 +14,16 @@ function classNames(...classes: string[]) {
 
 export default function App() {
   const navigate = useNavigate();
-  const accessToken = useAtomValue(userAccessTokenAtom);
+  const [user, setUser] = useAtom(userAtom);
 
   useEffect(() => {
-    if (!accessToken) return navigate('/login');
+    if (!user?.access_token) return navigate('/login');
 
-    auth.client.userInfo(accessToken, (err, res) => {
-      if (err) return navigate('/login');
+    auth.client.userInfo(user.access_token, (err, res) => {
+      if (err) {
+        setUser(RESET);
+        return navigate('/login');
+      }
       console.log(res);
     });
   });
@@ -120,7 +124,7 @@ export default function App() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src={user?.picture}
                         alt=""
                       />
                     </Menu.Button>

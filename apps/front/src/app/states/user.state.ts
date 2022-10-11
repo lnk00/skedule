@@ -1,7 +1,8 @@
 import { User } from '@skedule/model';
 import { atom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 
-export const userAtom = atom<User | undefined>(undefined);
+export const userAtom = atomWithStorage<User | undefined>('user', undefined);
 export const userEmailAtom = atom<string | undefined>(
   (get) => get(userAtom)?.email
 );
