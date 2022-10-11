@@ -1,13 +1,29 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { auth } from '../services/auth.service';
+import { useAtomValue } from 'jotai';
+import { userAccessTokenAtom } from '../states/user.state';
+import { useNavigate } from 'react-router-dom';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
 export default function App() {
+  const navigate = useNavigate();
+  const accessToken = useAtomValue(userAccessTokenAtom);
+
+  useEffect(() => {
+    if (!accessToken) return navigate('/login');
+
+    auth.client.userInfo(accessToken, (err, res) => {
+      if (err) return navigate('/login');
+      console.log(res);
+    });
+  });
+
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (

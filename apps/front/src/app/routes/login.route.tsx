@@ -1,4 +1,28 @@
+import { FormEvent, useState } from 'react';
+import { environment } from '../../environments/environment';
+import { auth } from '../services/auth.service';
+
 export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const login = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    auth.login(
+      {
+        email: email,
+        password: password,
+        realm: environment.auth0_realm,
+        redirectUri: environment.auth0_login_redirect_uri,
+        responseType: environment.auth0_login_response_type,
+      },
+      (err) => {
+        console.log('ERROR: ', err);
+      }
+    );
+  };
+
   return (
     <div className="h-screen bg-gray-50">
       <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -15,7 +39,12 @@ export default function Login() {
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-            <form className="space-y-6" action="#" method="POST">
+            <form
+              className="space-y-6"
+              action="#"
+              method="POST"
+              onSubmit={login}
+            >
               <div>
                 <label
                   htmlFor="email"
@@ -31,6 +60,8 @@ export default function Login() {
                     autoComplete="email"
                     required
                     className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
               </div>
@@ -50,6 +81,8 @@ export default function Login() {
                     autoComplete="current-password"
                     required
                     className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
               </div>

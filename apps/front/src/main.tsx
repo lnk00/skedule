@@ -1,8 +1,10 @@
+import { Provider } from 'jotai';
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App from './app/routes/app';
-import Login from './app/routes/login';
+import App from './app/routes/app.route';
+import Authenticate from './app/routes/authenticate.route';
+import Login from './app/routes/login.route';
 
 const router = createBrowserRouter([
   {
@@ -13,6 +15,10 @@ const router = createBrowserRouter([
     path: '/login',
     element: <Login />,
   },
+  {
+    path: '/authenticate',
+    element: <Authenticate />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(
@@ -20,6 +26,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );

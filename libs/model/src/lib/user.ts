@@ -1,4 +1,5 @@
 export interface User {
-  name: string;
-  email: string;
+  email?: string;
+  picture: string;
+  access_token?: string;
 }
