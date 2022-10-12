@@ -1,15 +1,14 @@
-import styles from './skd-button.module.scss';
-
-/* eslint-disable-next-line */
-export interface SkdButtonProps {}
+export interface SkdButtonProps {
+  children: string;
+}
 
 export function SkdButton(props: SkdButtonProps) {
   return (
     <button
-      type="button"
-      className="inline-flex items-center px-5 py-2 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      type="submit"
+      className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
     >
-      Button text
+      {props.children}
     </button>
   );
 }

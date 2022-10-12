@@ -17,7 +17,10 @@ export default function App() {
   const [user, setUser] = useAtom(userAtom);
 
   useEffect(() => {
-    if (!user?.access_token) return navigate('/login');
+    if (!user?.access_token) {
+      setUser(RESET);
+      return navigate('/login');
+    }
 
     auth.client.userInfo(user.access_token, (err, res) => {
       if (err) {
