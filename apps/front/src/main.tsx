@@ -2,9 +2,9 @@ import { Provider } from 'jotai';
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App from './app/routes/app.route';
-import Authenticate from './app/routes/authenticate.route';
-import Login from './app/routes/login.route';
+import App from './app/modules/app/views/app.view';
+import Authenticate from './app/modules/auth/views/authenticate.view';
+import Login from './app/modules/auth/views/login.view';
 
 const router = createBrowserRouter([
   {

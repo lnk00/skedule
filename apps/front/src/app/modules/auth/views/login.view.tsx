@@ -1,16 +1,13 @@
 import { SkdButton, SkdCheckbox, SkdInput, SkdLink } from '@skedule/ui';
-import { FormEvent, useState } from 'react';
-import { emailPasswordLogin } from '../services/auth.service';
+import { useState } from 'react';
+import { LoginController } from '../controllers/login.controller';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
 
-  const login = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    emailPasswordLogin(email, password);
-  };
+  const loginController = new LoginController();
 
   return (
     <div className="h-screen bg-gray-50">
@@ -32,7 +29,7 @@ export default function Login() {
               className="space-y-6"
               action="#"
               method="POST"
-              onSubmit={login}
+              onSubmit={(e) => loginController.login(e, email, password)}
             >
               <SkdInput
                 label="Email address"

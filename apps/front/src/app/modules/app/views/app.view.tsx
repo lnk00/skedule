@@ -2,9 +2,9 @@ import { Fragment, useEffect } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { auth } from '../services/auth.service';
+import { auth } from '../../auth/services/auth.service';
 import { useAtom } from 'jotai';
-import { userAtom } from '../states/user.state';
+import { userAtom } from '../../../states/user.state';
 import { useNavigate } from 'react-router-dom';
 import { RESET } from 'jotai/utils';
 
