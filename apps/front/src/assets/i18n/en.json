@@ -1,0 +1,12 @@
+{
+  "auth": {
+    "login": {
+      "title": "Sign in to you account",
+      "password": "Password",
+      "email": "Email address",
+      "remember": "Remember me",
+      "reset": "Forgot your password",
+      "signin": "Sign in"
+    }
+  }
+}

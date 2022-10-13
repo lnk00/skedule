@@ -1,5 +1,6 @@
 import { SkdButton, SkdCheckbox, SkdInput, SkdLink } from '@skedule/ui';
 import { useState } from 'react';
+import { useT } from 'talkr';
 import { LoginController } from '../controllers/login.controller';
 
 export default function Login() {
@@ -8,6 +9,8 @@ export default function Login() {
   const [rememberMe, setRememberMe] = useState(false);
 
   const loginController = new LoginController();
+
+  const { T } = useT();
 
   return (
     <div className="h-screen bg-gray-50">
@@ -19,7 +22,7 @@ export default function Login() {
             alt="Your Company"
           />
           <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-            Sign in to your account
+            {T('auth.login.title')}
           </h2>
         </div>
 
@@ -32,7 +35,7 @@ export default function Login() {
               onSubmit={(e) => loginController.login(e, email, password)}
             >
               <SkdInput
-                label="Email address"
+                label={T('auth.login.email')}
                 value={email}
                 onChange={setEmail}
                 type="email"
@@ -41,7 +44,7 @@ export default function Login() {
               ></SkdInput>
 
               <SkdInput
-                label="Password"
+                label={T('auth.login.password')}
                 value={password}
                 onChange={setPassword}
                 type="password"
@@ -51,16 +54,16 @@ export default function Login() {
 
               <div className="flex items-center justify-between">
                 <SkdCheckbox
-                  label="Remember me"
+                  label={T('auth.login.remember')}
                   value={rememberMe}
                   onChange={setRememberMe}
                   name="remember-me"
                 ></SkdCheckbox>
 
-                <SkdLink link="#">Forgot your password?</SkdLink>
+                <SkdLink link="#">{T('auth.login.reset')}</SkdLink>
               </div>
 
-              <SkdButton>Sign in</SkdButton>
+              <SkdButton>{T('auth.login.signin')}</SkdButton>
             </form>
           </div>
         </div>
