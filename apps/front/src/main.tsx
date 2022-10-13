@@ -4,9 +4,8 @@ import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Talkr } from 'talkr';
 import App from './app/modules/app/views/app.view';
-import Authenticate from './app/modules/auth/views/authenticate.view';
 import Login from './app/modules/auth/views/login.view';
-import Logout from './app/modules/auth/views/logout.view';
+import Signup from './app/modules/auth/views/signup.view';
 
 const router = createBrowserRouter([
   {
@@ -18,12 +17,8 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: '/logout',
-    element: <Logout />,
-  },
-  {
-    path: '/authenticate',
-    element: <Authenticate />,
+    path: '/signup',
+    element: <Signup />,
   },
 ]);
 

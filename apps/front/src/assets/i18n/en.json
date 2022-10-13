@@ -8,6 +8,13 @@
       "reset": "Forgot your password ?",
       "signin": "Sign in",
       "failed": "Your Email or Password is wrong."
+    },
+    "signup": {
+      "title": "Create a new account",
+      "password": "Password",
+      "email": "Email address",
+      "signup": "Sign up",
+      "failed": "Failed to create your account"
     }
   }
 }

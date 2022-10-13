@@ -2,11 +2,8 @@ import { Fragment, useEffect } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { logout } from '../../auth/services/auth.service';
-import { useAtom } from 'jotai';
-import { userAtom } from '../../../states/user.state';
 import { useNavigate } from 'react-router-dom';
-import { RESET } from 'jotai/utils';
+import { getSession, signout } from '../../auth/services/auth.service';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
@@ -14,14 +11,21 @@ function classNames(...classes: string[]) {
 
 export default function App() {
   const navigate = useNavigate();
-  const [user, setUser] = useAtom(userAtom);
 
   useEffect(() => {
-    if (!user?.access_token) {
-      setUser(RESET);
-      return navigate('/login');
-    }
-  });
+    getSession().then((session) => {
+      console.log('Session: ', session.data);
+      if (session.data.session === null) {
+        return navigate('/login');
+      }
+    });
+  }, []);
+
+  const logout = () => {
+    signout().then(() => {
+      navigate('/login');
+    });
+  };
 
   return (
     <Disclosure as="nav" className="bg-white shadow">
@@ -119,7 +123,7 @@ export default function App() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src={user?.picture}
+                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                         alt=""
                       />
                     </Menu.Button>
@@ -162,15 +166,15 @@ export default function App() {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="/logout"
+                          <p
+                            onClick={logout}
                             className={classNames(
                               active ? 'bg-gray-100' : '',
                               'block px-4 py-2 text-sm text-gray-700'
                             )}
                           >
                             Sign out
-                          </a>
+                          </p>
                         )}
                       </Menu.Item>
                     </Menu.Items>
@@ -253,8 +257,8 @@ export default function App() {
                   Settings
                 </Disclosure.Button>
                 <Disclosure.Button
-                  as="a"
-                  href="/logout"
+                  as="p"
+                  onClick={logout}
                   className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
                 >
                   Sign out

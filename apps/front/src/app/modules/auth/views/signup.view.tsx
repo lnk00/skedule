@@ -1,25 +1,18 @@
-import {
-  SkdAlert,
-  SkdButton,
-  SkdCheckbox,
-  SkdInput,
-  SkdLink,
-} from '@skedule/ui';
+import { SkdAlert, SkdButton, SkdInput } from '@skedule/ui';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useT } from 'talkr';
-import { LoginController } from '../controllers/login.controller';
+import { SignupController } from '../controllers/signup.controller';
 
-export default function Login() {
+export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
   const [failed, setFailed] = useState(false);
 
   const navigate = useNavigate();
   const { T } = useT();
 
-  const loginController = new LoginController();
+  const signupController = new SignupController();
 
   return (
     <div className="h-screen bg-gray-50">
@@ -31,7 +24,7 @@ export default function Login() {
             alt="Your Company"
           />
           <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-            {T('auth.login.title')}
+            {T('auth.signup.title')}
           </h2>
         </div>
 
@@ -41,12 +34,18 @@ export default function Login() {
               className="space-y-6"
               action="#"
               method="POST"
-              onSubmit={(e) =>
-                loginController.login(e, email, password, setFailed, navigate)
-              }
+              onSubmit={(e) => {
+                signupController.signup(
+                  e,
+                  email,
+                  password,
+                  setFailed,
+                  navigate
+                );
+              }}
             >
               <SkdInput
-                label={T('auth.login.email')}
+                label={T('auth.signup.email')}
                 value={email}
                 onChange={setEmail}
                 type="email"
@@ -55,7 +54,7 @@ export default function Login() {
               ></SkdInput>
 
               <SkdInput
-                label={T('auth.login.password')}
+                label={T('auth.signup.password')}
                 value={password}
                 onChange={setPassword}
                 type="password"
@@ -63,20 +62,9 @@ export default function Login() {
                 autocomplete="current-password"
               ></SkdInput>
 
-              {failed && <SkdAlert>{T('auth.login.failed')}</SkdAlert>}
+              {failed && <SkdAlert>{T('auth.signup.failed')}</SkdAlert>}
 
-              <div className="flex items-center justify-between">
-                <SkdCheckbox
-                  label={T('auth.login.remember')}
-                  value={rememberMe}
-                  onChange={setRememberMe}
-                  name="remember-me"
-                ></SkdCheckbox>
-
-                <SkdLink link="#">{T('auth.login.reset')}</SkdLink>
-              </div>
-
-              <SkdButton>{T('auth.login.signin')}</SkdButton>
+              <SkdButton>{T('auth.signup.signup')}</SkdButton>
             </form>
           </div>
         </div>

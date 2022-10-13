@@ -1,9 +1,9 @@
 import { Dispatch, FormEvent, SetStateAction } from 'react';
 import { NavigateFunction } from 'react-router-dom';
-import { emailPasswordSignin } from '../services/auth.service';
+import { emailPasswordSignup } from '../services/auth.service';
 
-export class LoginController {
-  login(
+export class SignupController {
+  signup(
     event: FormEvent<HTMLFormElement>,
     email: string,
     password: string,
@@ -11,13 +11,9 @@ export class LoginController {
     navigate: NavigateFunction
   ): void {
     event.preventDefault();
-    emailPasswordSignin(email, password).then((res) => {
-      if (
-        res.error === null &&
-        res.data.user !== null &&
-        res.data.session !== null
-      ) {
-        return navigate('/');
+    emailPasswordSignup(email, password).then((res) => {
+      if (res.error === null) {
+        navigate('/');
       } else {
         setFailed(true);
       }

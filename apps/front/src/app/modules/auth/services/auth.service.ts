@@ -1,35 +1,23 @@
-import { WebAuth } from 'auth0-js';
+import { createClient } from '@supabase/supabase-js';
 import { environment } from '../../../../environments/environment';
 
-export const auth = new WebAuth({
-  domain: environment.auth0_domain,
-  clientID: environment.auth0_client_id,
-  scope: environment.auth0_scope,
-});
+const supabase = createClient(
+  'https://xzevyurpyakftjpnjymr.supabase.co',
+  environment.supabase_key
+);
 
-export const emailPasswordLogin = (
-  email: string,
-  password: string
-): Promise<void> => {
-  return new Promise<void>((_, reject) => {
-    auth.login(
-      {
-        email: email,
-        password: password,
-        realm: environment.auth0_realm,
-        redirectUri: environment.auth0_login_redirect_uri,
-        responseType: environment.auth0_login_response_type,
-      },
-      (err) => {
-        reject(err);
-      }
-    );
-  });
+export const emailPasswordSignup = async (email: string, password: string) => {
+  return supabase.auth.signUp({ email, password });
 };
 
-export const logout = () => {
-  auth.logout({
-    returnTo: environment.auth0_logout_redirect_uri,
-    clientID: environment.auth0_client_id,
-  });
+export const emailPasswordSignin = (email: string, password: string) => {
+  return supabase.auth.signInWithPassword({ email, password });
+};
+
+export const signout = async () => {
+  return supabase.auth.signOut();
+};
+
+export const getSession = () => {
+  return supabase.auth.getSession();
 };
