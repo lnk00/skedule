@@ -1,4 +1,10 @@
-import { SkdButton, SkdCheckbox, SkdInput, SkdLink } from '@skedule/ui';
+import {
+  SkdAlert,
+  SkdButton,
+  SkdCheckbox,
+  SkdInput,
+  SkdLink,
+} from '@skedule/ui';
 import { useState } from 'react';
 import { useT } from 'talkr';
 import { LoginController } from '../controllers/login.controller';
@@ -7,6 +13,7 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   const loginController = new LoginController();
 
@@ -32,7 +39,9 @@ export default function Login() {
               className="space-y-6"
               action="#"
               method="POST"
-              onSubmit={(e) => loginController.login(e, email, password)}
+              onSubmit={(e) =>
+                loginController.login(e, email, password, setFailed)
+              }
             >
               <SkdInput
                 label={T('auth.login.email')}
@@ -51,6 +60,8 @@ export default function Login() {
                 name="password"
                 autocomplete="current-password"
               ></SkdInput>
+
+              {failed && <SkdAlert>{T('auth.login.failed')}</SkdAlert>}
 
               <div className="flex items-center justify-between">
                 <SkdCheckbox

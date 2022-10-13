@@ -6,7 +6,8 @@
       "email": "Email address",
       "remember": "Remember me",
       "reset": "Forgot your password",
-      "signin": "Sign in"
+      "signin": "Sign in",
+      "failed": "Your Email or Password is wrong."
     }
   }
 }
