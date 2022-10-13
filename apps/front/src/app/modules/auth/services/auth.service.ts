@@ -1,4 +1,4 @@
-import { Auth0Error, WebAuth } from 'auth0-js';
+import { WebAuth } from 'auth0-js';
 import { environment } from '../../../../environments/environment';
 
 export const auth = new WebAuth({
@@ -24,5 +24,12 @@ export const emailPasswordLogin = (
         reject(err);
       }
     );
+  });
+};
+
+export const logout = () => {
+  auth.logout({
+    returnTo: environment.auth0_logout_redirect_uri,
+    clientID: environment.auth0_client_id,
   });
 };

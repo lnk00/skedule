@@ -1,3 +1,4 @@
+import { RESET } from 'jotai/utils';
 import { Location, NavigateFunction } from 'react-router-dom';
 import { auth } from '../services/auth.service';
 
@@ -6,6 +7,7 @@ export class AuthenticateController {
   redirect(location: Location, setUser: any, navigate: NavigateFunction) {
     auth.parseHash({ hash: location.hash }, (err, data) => {
       if (!err && data?.accessToken) {
+        console.log(data);
         auth.client.userInfo(data?.accessToken, (err, res) => {
           if (!err) {
             setUser({
@@ -15,6 +17,7 @@ export class AuthenticateController {
             });
             navigate('/');
           } else {
+            setUser(RESET);
             navigate('/login');
           }
         });

@@ -2,7 +2,7 @@ import { Fragment, useEffect } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { auth } from '../../auth/services/auth.service';
+import { logout } from '../../auth/services/auth.service';
 import { useAtom } from 'jotai';
 import { userAtom } from '../../../states/user.state';
 import { useNavigate } from 'react-router-dom';
@@ -21,14 +21,6 @@ export default function App() {
       setUser(RESET);
       return navigate('/login');
     }
-
-    auth.client.userInfo(user.access_token, (err, res) => {
-      if (err) {
-        setUser(RESET);
-        return navigate('/login');
-      }
-      console.log(res);
-    });
   });
 
   return (
@@ -171,7 +163,7 @@ export default function App() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="/login"
+                            href="/logout"
                             className={classNames(
                               active ? 'bg-gray-100' : '',
                               'block px-4 py-2 text-sm text-gray-700'
@@ -262,7 +254,7 @@ export default function App() {
                 </Disclosure.Button>
                 <Disclosure.Button
                   as="a"
-                  href="/login"
+                  href="/logout"
                   className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
                 >
                   Sign out

@@ -2,10 +2,11 @@ import { Provider } from 'jotai';
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Talkr } from 'talkr';
 import App from './app/modules/app/views/app.view';
 import Authenticate from './app/modules/auth/views/authenticate.view';
 import Login from './app/modules/auth/views/login.view';
-import { Talkr } from 'talkr';
+import Logout from './app/modules/auth/views/logout.view';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
+  },
+  {
+    path: '/logout',
+    element: <Logout />,
   },
   {
     path: '/authenticate',
