@@ -18,6 +18,7 @@ export default function App() {
         return navigate('/login');
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const logout = () => {
