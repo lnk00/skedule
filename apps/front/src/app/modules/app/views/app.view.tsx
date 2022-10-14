@@ -14,7 +14,6 @@ export default function App() {
 
   useEffect(() => {
     getSession().then((session) => {
-      console.log('Session: ', session.data);
       if (session.data.session === null) {
         return navigate('/login');
       }
