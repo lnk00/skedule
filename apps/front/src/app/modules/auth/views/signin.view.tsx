@@ -8,9 +8,9 @@ import {
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useT } from 'talkr';
-import { LoginController } from '../controllers/login.controller';
+import { SigninController } from '../controllers/signin.controller';
 
-export default function Login() {
+export default function Signin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
@@ -19,7 +19,7 @@ export default function Login() {
   const navigate = useNavigate();
   const { T } = useT();
 
-  const loginController = new LoginController();
+  const loginController = new SigninController();
 
   return (
     <div className="h-screen bg-gray-50">

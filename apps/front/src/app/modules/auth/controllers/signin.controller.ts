@@ -2,7 +2,7 @@ import { Dispatch, FormEvent, SetStateAction } from 'react';
 import { NavigateFunction } from 'react-router-dom';
 import { emailPasswordSignin } from '../services/auth.service';
 
-export class LoginController {
+export class SigninController {
   login(
     event: FormEvent<HTMLFormElement>,
     email: string,
