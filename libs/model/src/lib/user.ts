@@ -3,3 +3,8 @@ export interface User {
   picture: string;
   access_token?: string;
 }
+
+export interface UserNavigationItem {
+  label: string;
+  href: string;
+}

@@ -1,19 +1,11 @@
+/* eslint-disable no-script-url */
 import { Menu, Transition } from '@headlessui/react';
+import { UserNavigationItem } from '@skedule/model';
 import { Fragment } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { signout } from '../../auth/services/auth.service';
+import { classNames } from '../../../helpers';
 
-const userNavigation = [
-  { name: 'Settings', href: 'javascript:void(0)' },
-  { name: 'Sign out', href: 'javascript:void(0)' },
-];
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ');
-}
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface UserMenuProps {
+  navigationItems: UserNavigationItem[];
   onSignout: () => void;
 }
 
@@ -39,8 +31,8 @@ export function UserMenu(props: UserMenuProps) {
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          {userNavigation.map((item) => (
-            <Menu.Item key={item.name}>
+          {props.navigationItems.map((item) => (
+            <Menu.Item key={item.label}>
               {({ active }) => (
                 <a
                   href={item.href}
@@ -50,7 +42,7 @@ export function UserMenu(props: UserMenuProps) {
                     'block py-2 px-4 text-sm text-gray-700'
                   )}
                 >
-                  {item.name}
+                  {item.label}
                 </a>
               )}
             </Menu.Item>
