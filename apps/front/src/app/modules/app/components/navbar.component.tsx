@@ -1,7 +1,7 @@
 /* eslint-disable no-script-url */
 import { BellIcon } from '@heroicons/react/24/outline';
 import { UserNavigationItem } from '@skedule/model';
-import { SkdIcon, SkdSearch } from '@skedule/ui';
+import { SkdIcon, SkdLogo, SkdSearch } from '@skedule/ui';
 import { useNavigate } from 'react-router-dom';
 import { AppController } from '../controllers/app.controller';
 import UserMenu from './user-menu..component';
@@ -23,11 +23,12 @@ export function Navbar(props: NavbarProps) {
       <div className="relative flex justify-between lg:gap-8 xl:grid xl:grid-cols-12">
         <div className="flex md:absolute md:inset-y-0 md:left-0 lg:static xl:col-span-2">
           <div className="flex flex-shrink-0 items-center">
-            <img
-              className="block h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt="Your Company"
-            />
+            <div className="mx-auto h-10 w-5">
+              <SkdLogo></SkdLogo>
+            </div>
+            <span className="hidden lg:inline font-bold text-xl ml-2">
+              Skedule
+            </span>
           </div>
         </div>
         <div className="min-w-0 flex-1 md:pl-8 lg:px-0 xl:col-span-8">

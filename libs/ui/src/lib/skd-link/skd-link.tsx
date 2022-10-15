@@ -8,7 +8,7 @@ export function SkdLink(props: SkdLinkProps) {
     <div className="text-sm">
       <a
         href={props.link}
-        className="font-medium text-indigo-600 hover:text-indigo-500"
+        className="font-medium text-main-600 hover:text-main-500"
       >
         {props.children}
       </a>

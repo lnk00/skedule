@@ -16,7 +16,7 @@ export function SkdCheckbox(props: SkdCheckboxProps) {
         type="checkbox"
         checked={props.value}
         onChange={() => props.onChange(!props.value)}
-        className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+        className="h-4 w-4 rounded border-gray-300 text-main-600 focus:ring-main-500"
       />
       <label htmlFor={props.name} className="ml-2 block text-sm text-gray-900">
         {props.label}

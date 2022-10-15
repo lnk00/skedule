@@ -39,15 +39,25 @@ export default function App() {
               {navigationItems.map((item) => (
                 <li key={item.title} className="relative">
                   <div className="group aspect-w-10 aspect-h-3 block w-full overflow-hidden rounded-lg bg-indigo-700 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 shadow-xl">
-                    <div className="flex items-end py-4 px-6">
-                      <h2 className="text-sm font-bold tracking-tight text-white sm:text-xl">
+                    <div className="flex items-end justify-between py-4 px-6">
+                      <h2 className="text-sm font-bold tracking-tight text-white md:text-xl">
                         <span className="block">{item.title}</span>
                       </h2>
-                      <div className="absolute right-6 bottom-4">
+                      <div className="flex">
+                        <img
+                          src="https://img.icons8.com/stickers/100/000000/overtime.png"
+                          alt="twitch-icon"
+                          className="h-8"
+                        />
                         <img
                           src="https://img.icons8.com/stickers/100/000000/twitch.png"
                           alt="twitch-icon"
-                          className="h-12 rotate-12"
+                          className="h-8"
+                        />
+                        <img
+                          src="https://img.icons8.com/stickers/100/000000/alarm.png"
+                          alt="twitch-icon"
+                          className="h-8"
                         />
                       </div>
                     </div>

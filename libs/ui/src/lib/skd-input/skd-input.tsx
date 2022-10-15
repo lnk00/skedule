@@ -25,7 +25,7 @@ export function SkdInput(props: SkdInputProps) {
           type={props.type}
           autoComplete={props.autocomplete ?? 'off'}
           required
-          className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+          className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-main-500 focus:outline-none focus:ring-main-500 sm:text-sm"
           value={props.value}
           onChange={(e) => props.onChange(e.target.value)}
         />
