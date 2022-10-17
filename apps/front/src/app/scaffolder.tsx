@@ -1,9 +1,8 @@
 /* eslint-disable no-script-url */
 import { useEffect } from 'react';
-import { useIsAuthentitcated, useSignout } from '../../auth/hooks';
+import { useIsAuthentitcated, useSignout } from './modules/auth/hooks';
 import { NavigationItem, UserNavigationItem } from '@skedule/model';
 import { SkdHeaderNavigation, SkdNavbar } from '@skedule/ui';
-import { Onboarding } from '../../onboarding/views';
 import { Outlet } from 'react-router-dom';
 
 const userNavigationItems: UserNavigationItem[] = [
@@ -29,7 +28,7 @@ const navigationItems: NavigationItem[] = [
   },
 ];
 
-export function App() {
+export function Scaffolder() {
   const [isAuthenticated] = useIsAuthentitcated();
   const [signout] = useSignout();
 

@@ -3,18 +3,33 @@ import { Provider } from 'jotai';
 import { StrictMode } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Talkr } from 'talkr';
-import { App } from './app/modules/app/views';
 import { Signin, Signup } from './app/modules/auth/views';
 import { Onboarding } from './app/modules/onboarding/views';
+import { Scaffolder } from './app/scaffolder';
+import { Skedule } from './app/modules/skedule/views';
+import { Discover } from './app/modules/discover/views';
+import { Creators } from './app/modules/creators/views';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <Scaffolder />,
     children: [
       {
         path: 'onboarding',
         element: <Onboarding />,
+      },
+      {
+        path: 'skedule',
+        element: <Skedule />,
+      },
+      {
+        path: 'creators',
+        element: <Creators />,
+      },
+      {
+        path: 'discover',
+        element: <Discover />,
       },
     ],
   },
