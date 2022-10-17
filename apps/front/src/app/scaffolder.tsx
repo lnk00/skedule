@@ -3,7 +3,8 @@ import { useEffect } from 'react';
 import { useIsAuthentitcated, useSignout } from './modules/auth/hooks';
 import { NavigationItem, UserNavigationItem } from '@skedule/model';
 import { SkdHeaderNavigation, SkdNavbar } from '@skedule/ui';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { useRedirect } from './modules/core/hooks';
 
 const userNavigationItems: UserNavigationItem[] = [
   { label: 'Settings', href: 'javascript:void(0)' },
@@ -31,8 +32,10 @@ const navigationItems: NavigationItem[] = [
 export function Scaffolder() {
   const [isAuthenticated] = useIsAuthentitcated();
   const [signout] = useSignout();
+  const [redirect] = useRedirect();
 
   useEffect(() => isAuthenticated());
+  useEffect(() => redirect(), []);
 
   return (
     <div className="min-h-full">

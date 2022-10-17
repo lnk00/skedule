@@ -8,7 +8,7 @@ export function SkdLogo(props: SkdLogoProps) {
         <svg height="100%" viewBox="-50 -50 300 300">
           <polygon
             className=" fill-main-500 stroke-main-500 stroke-[48px] "
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             points="100,0 0,200 200,200"
           />
         </svg>
@@ -17,7 +17,7 @@ export function SkdLogo(props: SkdLogoProps) {
         <svg height="100%" viewBox="-50 -50 300 300">
           <polygon
             className=" fill-main-500 stroke-main-500 stroke-[48px] "
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             points="100,0 0,200 200,200"
           />
         </svg>
