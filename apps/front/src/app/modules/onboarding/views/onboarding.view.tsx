@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface SkedulePlaceholderProps {}
+interface OnboardingProps {}
 
-export default function SkedulePlaceholder(props: SkedulePlaceholderProps) {
+export function Onboarding(props: OnboardingProps) {
   return (
     <div className="overflow-hidden rounded-lg bg-indigo-700 shadow-xl lg:grid lg:grid-cols-2 lg:gap-4">
       <div className="px-6 pt-10 pb-12 sm:px-16 sm:pt-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">

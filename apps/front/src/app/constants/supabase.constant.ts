@@ -7,3 +7,7 @@ export const SUPABASE = createClient(
 );
 
 export const AUTH = SUPABASE.auth;
+
+export const DATABASE = SUPABASE.from;
+
+export const FUNCTION = SUPABASE.functions;

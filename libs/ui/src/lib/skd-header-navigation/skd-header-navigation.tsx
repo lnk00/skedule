@@ -1,28 +1,13 @@
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface HeaderNavigationProps {}
+import { NavigationItem } from '@skedule/model';
 
-export default function HeaderNavigation(props: HeaderNavigationProps) {
-  const navigationItems = [
-    {
-      title: 'Skedule',
-      image:
-        'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
-    },
-    {
-      title: 'Creators',
-      image:
-        'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
-    },
-    {
-      title: 'Discover',
-      image:
-        'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
-    },
-  ];
+export interface SkdHeaderNavigationProps {
+  navigationItems: NavigationItem[];
+}
 
+export function SkdHeaderNavigation(props: SkdHeaderNavigationProps) {
   return (
     <ul className="grid grid-cols-3 gap-x-4 gap-y-8 sm:gap-x-6 xl:gap-x-8">
-      {navigationItems.map((item) => (
+      {props.navigationItems.map((item) => (
         <li key={item.title} className="relative">
           <div className="group aspect-w-10 aspect-h-3 block w-full overflow-hidden rounded-lg bg-indigo-700 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 shadow-xl">
             <div className="flex items-end justify-between py-4 px-6">
@@ -53,3 +38,5 @@ export default function HeaderNavigation(props: HeaderNavigationProps) {
     </ul>
   );
 }
+
+export default SkdHeaderNavigation;

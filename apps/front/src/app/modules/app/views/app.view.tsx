@@ -1,8 +1,33 @@
+/* eslint-disable no-script-url */
 import { useEffect } from 'react';
-import Navbar from '../components/navbar.component';
-import HeaderNavigation from '../components/header-navigation.component';
-import SkedulePlaceholder from '../components/skedule-placeholder.component';
 import { useIsAuthentitcated, useSignout } from '../../auth/hooks';
+import { NavigationItem, UserNavigationItem } from '@skedule/model';
+import { SkdHeaderNavigation, SkdNavbar } from '@skedule/ui';
+import { Onboarding } from '../../onboarding/views';
+import { Outlet } from 'react-router-dom';
+
+const userNavigationItems: UserNavigationItem[] = [
+  { label: 'Settings', href: 'javascript:void(0)' },
+  { label: 'Sign out', href: 'javascript:void(0)' },
+];
+
+const navigationItems: NavigationItem[] = [
+  {
+    title: 'Skedule',
+    image:
+      'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
+  },
+  {
+    title: 'Creators',
+    image:
+      'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
+  },
+  {
+    title: 'Discover',
+    image:
+      'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
+  },
+];
 
 export function App() {
   const [isAuthenticated] = useIsAuthentitcated();
@@ -12,16 +37,21 @@ export function App() {
 
   return (
     <div className="min-h-full">
-      <Navbar onSignout={signout}></Navbar>
+      <SkdNavbar
+        onSignout={signout}
+        navigationItems={userNavigationItems}
+      ></SkdNavbar>
       <div>
         <header className="pt-4 pb-8">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <HeaderNavigation></HeaderNavigation>
+            <SkdHeaderNavigation
+              navigationItems={navigationItems}
+            ></SkdHeaderNavigation>
           </div>
         </header>
         <main>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <SkedulePlaceholder></SkedulePlaceholder>
+            <Outlet></Outlet>
           </div>
         </main>
       </div>

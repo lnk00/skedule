@@ -1,15 +1,22 @@
+import * as ReactDOM from 'react-dom/client';
 import { Provider } from 'jotai';
 import { StrictMode } from 'react';
-import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Talkr } from 'talkr';
 import { App } from './app/modules/app/views';
 import { Signin, Signup } from './app/modules/auth/views';
+import { Onboarding } from './app/modules/onboarding/views';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    children: [
+      {
+        path: 'onboarding',
+        element: <Onboarding />,
+      },
+    ],
   },
   {
     path: '/login',
