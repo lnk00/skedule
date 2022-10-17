@@ -1,20 +1,18 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { AppController } from '../controllers/app.controller';
 import Navbar from '../components/navbar.component';
 import HeaderNavigation from '../components/header-navigation.component';
 import SkedulePlaceholder from '../components/skedule-placeholder.component';
+import { useIsAuthentitcated, useSignout } from '../../auth/hooks';
 
-export default function App() {
-  const navigate = useNavigate();
+export function App() {
+  const [isAuthenticated] = useIsAuthentitcated();
+  const [signout] = useSignout();
 
-  const appController = new AppController();
-
-  useEffect(() => appController.isAuthenticated(navigate));
+  useEffect(() => isAuthenticated());
 
   return (
     <div className="min-h-full">
-      <Navbar appController={appController}></Navbar>
+      <Navbar onSignout={signout}></Navbar>
       <div>
         <header className="pt-4 pb-8">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -2,17 +2,13 @@
 import { BellIcon } from '@heroicons/react/24/outline';
 import { UserNavigationItem } from '@skedule/model';
 import { SkdIcon, SkdLogo, SkdSearch } from '@skedule/ui';
-import { useNavigate } from 'react-router-dom';
-import { AppController } from '../controllers/app.controller';
 import UserMenu from './user-menu..component';
 
 export interface NavbarProps {
-  appController: AppController;
+  onSignout: () => void;
 }
 
 export function Navbar(props: NavbarProps) {
-  const navigate = useNavigate();
-
   const userNavigationItems: UserNavigationItem[] = [
     { label: 'Settings', href: 'javascript:void(0)' },
     { label: 'Sign out', href: 'javascript:void(0)' },
@@ -42,7 +38,7 @@ export function Navbar(props: NavbarProps) {
           </SkdIcon>
           <UserMenu
             navigationItems={userNavigationItems}
-            onSignout={props.appController.signout.bind(null, navigate)}
+            onSignout={props.onSignout}
           />
         </div>
       </div>

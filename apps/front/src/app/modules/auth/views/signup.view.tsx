@@ -1,18 +1,14 @@
 import { SkdAlert, SkdButton, SkdInput } from '@skedule/ui';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useT } from 'talkr';
-import { SignupController } from '../controllers/signup.controller';
+import { useSignupWithEmailAndPassword } from '../hooks';
 
-export default function Signup() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [failed, setFailed] = useState(false);
+export function Signup() {
+  const [
+    { email, password, failed },
+    { setEmail, setPassword, signupWithEmailAndPassword },
+  ] = useSignupWithEmailAndPassword();
 
-  const navigate = useNavigate();
   const { T } = useT();
-
-  const signupController = new SignupController();
 
   return (
     <div className="h-screen bg-gray-50">
@@ -34,15 +30,7 @@ export default function Signup() {
               className="space-y-6"
               action="#"
               method="POST"
-              onSubmit={(e) => {
-                signupController.signup(
-                  e,
-                  email,
-                  password,
-                  setFailed,
-                  navigate
-                );
-              }}
+              onSubmit={(e) => signupWithEmailAndPassword(e)}
             >
               <SkdInput
                 label={T('auth.signup.email')}

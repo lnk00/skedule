@@ -3,9 +3,8 @@ import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Talkr } from 'talkr';
-import App from './app/modules/app/views/app.view';
-import Signin from './app/modules/auth/views/signin.view';
-import Signup from './app/modules/auth/views/signup.view';
+import { App } from './app/modules/app/views';
+import { Signin, Signup } from './app/modules/auth/views';
 
 const router = createBrowserRouter([
   {

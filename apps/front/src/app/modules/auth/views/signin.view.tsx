@@ -6,21 +6,16 @@ import {
   SkdLink,
   SkdLogo,
 } from '@skedule/ui';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useT } from 'talkr';
-import { SigninController } from '../controllers/signin.controller';
+import { useSigninWithEmailAndPassword } from '../hooks';
 
-export default function Signin() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
-  const [failed, setFailed] = useState(false);
+export function Signin() {
+  const [
+    { email, password, rememberMe, failed },
+    { setEmail, setPassword, setRememberMe, signinWithEmailAndPassword },
+  ] = useSigninWithEmailAndPassword();
 
-  const navigate = useNavigate();
   const { T } = useT();
-
-  const loginController = new SigninController();
 
   return (
     <div className="h-screen bg-gray-50">
@@ -40,9 +35,7 @@ export default function Signin() {
               className="space-y-6"
               action="#"
               method="POST"
-              onSubmit={(e) =>
-                loginController.login(e, email, password, setFailed, navigate)
-              }
+              onSubmit={(e) => signinWithEmailAndPassword(e)}
             >
               <SkdInput
                 label={T('auth.login.email')}
