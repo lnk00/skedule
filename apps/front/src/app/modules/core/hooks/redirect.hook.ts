@@ -6,7 +6,7 @@ export const useRedirect = () => {
 
   const redirect = () => {
     if (location.pathname === '/') {
-      navigate('/onboarding');
+      navigate('/creators');
     }
   };
   return [redirect] as const;

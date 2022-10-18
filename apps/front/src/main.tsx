@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Talkr } from 'talkr';
 import { Signin, Signup } from './app/modules/auth/views';
 import { Onboarding } from './app/modules/onboarding/views';
-import { Scaffolder } from './app/scaffolder';
+import { Scaffolder } from './app/modules/core/views/';
 import { Skedule } from './app/modules/skedule/views';
 import { Discover } from './app/modules/discover/views';
 import { Creators } from './app/modules/creators/views';
