@@ -20,21 +20,17 @@ export const useTwitch = () => {
   };
 
   const getTopCreators = async (query: string) => {
-    const isLast = (idx: number, streams: any[]) => {
-      return idx !== streams.length - 1 ? '&' : '';
-    };
-
     const topCreators: Creator[] = [];
-    const topStreams: any[] = await tokenWrapper(TWITCH.getTopStreams, query);
-    const q = topStreams.reduce(
+    const topStreams = await tokenWrapper(TWITCH.getTopStreams, query);
+    const userByIdQuery = topStreams.reduce(
       (acc, stream, idx, streams) =>
-        acc + `id=${stream.user_id}${isLast(idx, streams)}`,
+        acc + `id=${stream.user_id}${idx !== streams.length - 1 ? '&' : ''}`,
       '?'
     );
-    const topUser: any[] = await tokenWrapper(TWITCH.getUserById, q);
+    const topUser = await tokenWrapper(TWITCH.getUserById, userByIdQuery);
 
     topStreams.forEach((stream) => {
-      const user = topUser.find((user) => user.id == stream.user_id);
+      const user = topUser.find((user) => user.id === stream.user_id);
       if (user) {
         topCreators.push({
           name: user.display_name,
