@@ -1,17 +1,24 @@
-import { Creator } from '@skedule/model';
 import { environment } from '../../environments/environment';
 
 export class TwitchService {
-  async getCreators(query: string, token: string): Promise<Creator[]> {
-    const res = await fetch(
-      `https://api.twitch.tv/helix/search/channels?query=${query}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Client-Id': environment.twitch_client_id,
-        },
-      }
-    );
+  async getTopStreams(query: string, token: string) {
+    const res = await fetch(`https://api.twitch.tv/helix/streams?${query}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Client-Id': environment.twitch_client_id,
+      },
+    });
+    const data = await res.json();
+    return data.data;
+  }
+
+  async getUserById(query: string, token: string) {
+    const res = await fetch(`https://api.twitch.tv/helix/users?${query}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Client-Id': environment.twitch_client_id,
+      },
+    });
     const data = await res.json();
     return data.data;
   }

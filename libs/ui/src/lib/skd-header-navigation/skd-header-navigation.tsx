@@ -8,8 +8,8 @@ export function SkdHeaderNavigation(props: SkdHeaderNavigationProps) {
   return (
     <ul className="grid grid-cols-3 gap-x-4 gap-y-8 sm:gap-x-6 xl:gap-x-8">
       {props.navigationItems.map((item) => (
-        <a href={item.href}>
-          <li key={item.title} className="relative">
+        <a href={item.href} key={item.title}>
+          <li className="relative">
             <div className="group aspect-w-10 aspect-h-3 block w-full overflow-hidden rounded-lg bg-indigo-700 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 shadow-xl">
               <div className="flex items-end justify-between py-4 px-6">
                 <h2 className="text-sm font-bold tracking-tight text-white md:text-xl">

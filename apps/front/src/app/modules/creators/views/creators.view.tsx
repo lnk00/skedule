@@ -1,65 +1,8 @@
-import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline';
-import { useAtomValue } from 'jotai';
+import { IdentificationIcon, BookmarkIcon } from '@heroicons/react/24/outline';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { useTwitch } from '../../core/hooks/twitch.hook';
 import { creatorsAtom } from '../../core/states/twitch.state';
-
-const people = [
-  {
-    name: 'Jane Cooper',
-    title: 'Regional Paradigm Technician',
-    role: 'Admin',
-    email: 'janecooper@example.com',
-    telephone: '+1-202-555-0170',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-  },
-  {
-    name: 'Jane Cooper',
-    title: 'Regional Paradigm Technician',
-    role: 'Admin',
-    email: 'janecooper@example.com',
-    telephone: '+1-202-555-0170',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-  },
-  {
-    name: 'Jane Cooper',
-    title: 'Regional Paradigm Technician',
-    role: 'Admin',
-    email: 'janecooper@example.com',
-    telephone: '+1-202-555-0170',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-  },
-  {
-    name: 'Jane Cooper',
-    title: 'Regional Paradigm Technician',
-    role: 'Admin',
-    email: 'janecooper@example.com',
-    telephone: '+1-202-555-0170',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-  },
-  {
-    name: 'Jane Cooper',
-    title: 'Regional Paradigm Technician',
-    role: 'Admin',
-    email: 'janecooper@example.com',
-    telephone: '+1-202-555-0170',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-  },
-  {
-    name: 'Jane Cooper',
-    title: 'Regional Paradigm Technician',
-    role: 'Admin',
-    email: 'janecooper@example.com',
-    telephone: '+1-202-555-0170',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-  },
-];
 
 export default function Example() {
   const creators = useAtomValue(creatorsAtom);
@@ -71,35 +14,23 @@ export default function Example() {
     >
       {creators.map((creator) => (
         <li
-          key={creator.display_name}
+          key={creator.name}
           className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
         >
           <div className="flex w-full items-center justify-between space-x-6 p-6">
             <div className="flex-1 truncate">
               <div className="flex items-center space-x-3">
                 <h3 className="truncate text-sm font-medium text-gray-900">
-                  {creator.display_name}
+                  {creator.name}
                 </h3>
-                {creator.is_live && (
-                  <span className="flex-shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 flex items-center justify-center">
-                    live
-                    <svg
-                      className="ml-1 h-2 w-2 text-green-500"
-                      fill="currentColor"
-                      viewBox="0 0 8 8"
-                    >
-                      <circle cx={4} cy={4} r={3} />
-                    </svg>
-                  </span>
-                )}
               </div>
               <p className="mt-1 truncate text-sm text-gray-500">
-                {creator.game_name}
+                {creator.gameName}
               </p>
             </div>
             <img
               className="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300"
-              src={creator.thumbnail_url}
+              src={creator.thumbnail}
               alt=""
             />
           </div>
@@ -110,11 +41,11 @@ export default function Example() {
                   href="#"
                   className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
                 >
-                  <EnvelopeIcon
+                  <IdentificationIcon
                     className="h-5 w-5 text-gray-400"
                     aria-hidden="true"
                   />
-                  <span className="ml-3">Email</span>
+                  <span className="ml-3">More infos</span>
                 </a>
               </div>
               <div className="-ml-px flex w-0 flex-1">
@@ -122,11 +53,11 @@ export default function Example() {
                   href="#"
                   className="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
                 >
-                  <PhoneIcon
+                  <BookmarkIcon
                     className="h-5 w-5 text-gray-400"
                     aria-hidden="true"
                   />
-                  <span className="ml-3">Call</span>
+                  <span className="ml-3">Add to favorite</span>
                 </a>
               </div>
             </div>
@@ -141,10 +72,18 @@ export default function Example() {
 interface CreatorsProps {}
 
 export function Creators(props: CreatorsProps) {
-  const [{ getCreators }] = useTwitch();
+  const [{ getTopCreators }] = useTwitch();
+  const setCreators = useSetAtom(creatorsAtom);
 
   useEffect(() => {
-    getCreators('Domingo');
+    const fetchData = async () => {
+      const creators = await getTopCreators('language=fr');
+      setCreators(creators);
+    };
+
+    fetchData().catch((eror) => {
+      return;
+    });
   }, []);
 
   return (
